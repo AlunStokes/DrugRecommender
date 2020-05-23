@@ -1,3 +1,5 @@
+import numpy as np
+
 class User(object):
     def __init__(self, name):
         self.name = name
@@ -20,3 +22,15 @@ class User(object):
             s += '{}: {}\n'.format(i + 1, self.reviews[i])
             i += 1
         return s
+
+    def num_dist_drugs(self):
+        l = []
+        for review in self.reviews:
+            if review.drug not in l:
+                l.append(review.drug)
+        return len(l)
+
+    def generate_vector(self, drugs):
+        self.vector = np.zeros(len(drugs))
+        for review in self.reviews:
+            self.vector[drugs.index(review.drug)] = review.rating

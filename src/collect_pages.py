@@ -85,6 +85,8 @@ for drug in drugs:
 
                 if user == 'Anonymous':
                     continue
+                elif purpose == '':
+                    continue
 
                 comments.append(Comment(user, purpose, content, rating))
             except ValueError:

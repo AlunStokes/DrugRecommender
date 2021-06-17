@@ -28,3 +28,20 @@ class Users(object):
 
     def __len__(self):
         return len(self.users)
+
+    def __getitem__(self, x):
+        return self.users[x]
+
+    def generate_sparse_matrix(self, drugs):
+        user_index = []
+        item_index = []
+        ratings = []
+        j = 0
+        for user in self.users:
+            i, r = user.generate_sparse_vector(drugs)
+            user_index += [j] * len(i)
+            item_index += i
+            ratings += r
+            j += 1
+
+        return user_index, item_index, ratings

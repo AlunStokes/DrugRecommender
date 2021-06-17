@@ -23,6 +23,8 @@ if __name__ == '__main__':
     users = []
 
     for key in data.keys():
+        '''if len(data[key]) < 100:
+            continue'''
         print("Processing {}".format(key))
         for comment in data[key]:
             if User(comment.user) in users:
